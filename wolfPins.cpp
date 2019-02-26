@@ -1,28 +1,29 @@
-#include "wolfPins.h"
+#include "WolfPins.h"
 
 
 
-wolfPins::wolfPins()
+WolfPins::WolfPins()
 {
+	
 	PIN_DEBUG = 12;
 	PIN_LED = 13;
-	setup_Pins();
+	//setup_Pins();
 }
 
 
-wolfPins::~wolfPins()
+WolfPins::~WolfPins()
 {
 }
 
 
-void wolfPins::setup_Pins()
-{
+//void WolfPins::setup_Pins()
+//{
+//
+//	pinMode(PIN_LED(), OUTPUT);
+//	pinMode(PIN_DEBUG(), INPUT);
+//	
+//}
 
-	pinMode(PIN_LED, OUTPUT);
-	pinMode(PIN_DEBUG, INPUT);
 
-}
-
-
-int wolfPins::getPin_DEBUG() { return PIN_DEBUG; }
-int wolfPins::getPin_LED() { return PIN_LED; }
+int WolfPins::getPin_DEBUG() { return PIN_DEBUG; }
+int WolfPins::getPin_LED() { return PIN_LED; }

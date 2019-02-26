@@ -1,34 +1,34 @@
-#include "wolfDebug.h"
+#include "WolfDebug.h"
 
-
-wolfDebug::wolfDebug()
+WolfDebug::WolfDebug()
 {
 	debugMode = false;
 }
 
 
-wolfDebug::wolfDebug(int debugPin)
+WolfDebug::WolfDebug(int debugPin)
 {
 	debugMode = false;
-	setup_Debug(debugPin);
+	//setup_Debug(debugPin);
 }
 
 
-wolfDebug::~wolfDebug()
+WolfDebug::~WolfDebug()
 {
 }
 
 
-void wolfDebug::setup_Debug(int debugPin)
-{
-	if (digitalRead(debugPin) == HIGH)
-	{
-		Serial.begin(9600);
-		Serial.println("WOLFSAT DEBUG MODE");
-		debugMode = true;
-	}
-	else
-		debugMode = false;
-}
+bool WolfDebug::get_debugMode() { return debugMode; }
 
-bool wolfDebug::get_debugMode() { return debugMode; }
+
+//void WolfDebug::setup_Debug(int debugPin)
+//{
+//	if (digitalRead(debugPin) == HIGH)
+//	{
+//		Serial.begin(9600);
+//		Serial.println("WOLFSAT DEBUG MODE");
+//		debugMode = true;
+//	}
+//	else
+//		debugMode = false;
+//}
