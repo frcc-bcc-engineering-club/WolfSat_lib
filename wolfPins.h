@@ -2,6 +2,9 @@
 #ifndef WOLFPINS_H
 #define WOLFPINS_H
 
+#include <Arduino.h>
+
+
 // Visual Studio Copy, Some functions commented out.
 
 class WolfPins
@@ -12,7 +15,7 @@ public:
 	int getPin_LED();
 	int getPin_DEBUG();
 private:
-	//void setup_Pins();
+	void setup_Pins();
 	int PIN_LED;
 	int PIN_DEBUG;
 };

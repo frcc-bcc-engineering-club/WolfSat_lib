@@ -3,6 +3,8 @@
 #define WOLFDEBUG_H
 
 #include "WolfPins.h"
+#include <Arduino.h>
+
 
 // Visual Studio version, some functions commented out...
 
@@ -14,7 +16,7 @@ public:
 	~WolfDebug();
 	bool get_debugMode();
 private:
-	//void setup_Debug(int debugPin);
+	void setup_Debug(int debugPin);
 	bool debugMode;
 };
 

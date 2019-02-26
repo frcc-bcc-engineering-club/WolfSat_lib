@@ -4,6 +4,7 @@
 
 #include "WolfPins.h"
 #include "WolfDebug.h"
+#include <Arduino.h>
 
 // Visual Studio Copy. Some functions commented out...
 
