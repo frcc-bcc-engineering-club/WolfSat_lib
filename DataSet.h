@@ -3,26 +3,77 @@
 #define DATASET_H
 
 #define Naught 0x00FACADE
+#include <Arduino.h>
 
-class DataSet
+class LoggerWrap;
+
+//typename type;
+
+
+template<typename type> class DataSet
 {
 public:
 	DataSet();
-	DataSet(bool typeIsInt);
+	DataSet(int in_size);
 	~DataSet();
-	virtual void get_data(int& out_int, double& out_dub, const int in_pos) = 0;
-	int get_dataPos();
-	int get_dataSize();
-	virtual void set_data(const int in_int, const double in_dub) = 0;
-	//virtual void set_dataSet(const int* in_intSet, const double* in_dubSet) = 0;
-	void set_dataSize(const int in_size);
-	void incr_dataPos();
+	type get_data(int in_pos);
+	int get_pos();
+	int get_size();
+	void set_data(type in_data);
 private:
-	virtual void setup_array() = 0;
-	bool checkType();
-	int dataSize;
-	int dataPos;
-	bool isIntType;
+	type * data;
+	int size;
+	int pos;
 };
 
+
+
+template<typename type> DataSet<type>::DataSet()
+{
+	size = 0;
+	pos = 0;
+	data = new type[size];
+}
+
+
+template<typename type> DataSet<type>::DataSet(int in_size)
+{
+	size = in_size;
+	pos = 0;
+	data = new type[size];
+}
+
+
+template<typename type> DataSet<type>::~DataSet()
+{
+
+}
+
+
+template<typename type> type DataSet<type>::get_data(int in_pos)
+{
+	return data[in_pos];
+}
+
+
+template<typename type> int DataSet<type>::get_pos()
+{
+	return pos;
+}
+
+
+template<typename type> int DataSet<type>::get_size()
+{
+	return size;
+}
+
+
+template<typename type> void DataSet<type>::set_data(type in_data)
+{
+	if ((pos < size) && (pos >= 0))
+		data[pos] = in_data;
+}
+
+
 #endif // !DATASET_H
+
