@@ -2,7 +2,7 @@
 #ifndef DATASET_H
 #define DATASET_H
 
-#define Naught 0x00FACADE
+#define NAUGHT 0x00FACADE
 #include <Arduino.h>
 
 class LoggerWrap;
@@ -13,14 +13,37 @@ class LoggerWrap;
 template<typename type> class DataSet
 {
 public:
-	DataSet();
+	DataSet(); 
+	//	Default Constructor
+	//	Pre: none
+	//	Post: Initializes the data set to a size 0 array.
 	DataSet(int in_size);
+	//	Parameterized constructor
+	//	Pre: None
+	//	Post: Initializes the data set size to the parameter in_size
 	~DataSet();
+	//	Decon
 	type get_data(int in_pos);
+	//	Gets data from the array.
+	//	Pre: Self initialized.
+	//	Post: returns data in the array from parameter position in_pos
 	int get_pos();
+	//	Gets the current array position
+	//	Pre: Self initialized
+	//	Post: returns the active array position.
 	int get_size();
+	//	Gets the size of the array
+	//	Pre: Self initialized
+	//	Post: returns the max number of elements that can be stored in the array.
 	void set_data(type in_data);
+	//	Assigns the parameter in_data to the active array position
+	//	Pre: Self initialized, matching type
+	//	Post: puts the parameter in_data at the active array position
 private:
+	void fillArray();
+	//	Fills array data with Naught
+	//	Pre: Self initialized
+	//	Post: Fills all array points with 0x00FACADE
 	type * data;
 	int size;
 	int pos;
@@ -41,6 +64,7 @@ template<typename type> DataSet<type>::DataSet(int in_size)
 	size = in_size;
 	pos = 0;
 	data = new type[size];
+	fillArray();
 }
 
 
@@ -72,6 +96,17 @@ template<typename type> void DataSet<type>::set_data(type in_data)
 {
 	if ((pos < size) && (pos >= 0))
 		data[pos] = in_data;
+}
+
+
+template<typename type> void DataSet<type>::fillArray()
+{
+	int tempPos = 0;
+	while (tempPos < size)
+	{
+		data[tempPos] = NAUGHT;
+		tempPos++;
+	}
 }
 
 
