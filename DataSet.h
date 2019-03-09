@@ -44,6 +44,10 @@ private:
 	//	Fills array data with Naught
 	//	Pre: Self initialized
 	//	Post: Fills all array points with 0x00FACADE
+	void circlePos();
+	//	Resets array pos to zero once filled.
+	//	Pre: Self initialized
+	//	Post: Pos = 0 after checks.
 	type * data;
 	int size;
 	int pos;
@@ -95,7 +99,12 @@ template<typename type> int DataSet<type>::get_size()
 template<typename type> void DataSet<type>::set_data(type in_data)
 {
 	if ((pos < size) && (pos >= 0))
+	{
 		data[pos] = in_data;
+		pos++;
+		if (pos >= size)
+			circlePos();
+	}
 }
 
 
@@ -107,6 +116,12 @@ template<typename type> void DataSet<type>::fillArray()
 		data[tempPos] = NAUGHT;
 		tempPos++;
 	}
+}
+
+
+template<typename type> void DataSet<type>::circlePos()
+{
+	pos = 0;
 }
 
 
