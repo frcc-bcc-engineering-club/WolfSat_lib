@@ -39,6 +39,10 @@ public:
 	//	Assigns the parameter in_data to the active array position
 	//	Pre: Self initialized, matching type
 	//	Post: puts the parameter in_data at the active array position
+	void reset();
+	//	Resets the pos to 0 and fills array with facade.
+	//	Pre: Self initialized
+	//	Post: resets the DataSet.
 private:
 	void fillArray();
 	//	Fills array data with Naught
@@ -102,9 +106,14 @@ template<typename type> void DataSet<type>::set_data(type in_data)
 	{
 		data[pos] = in_data;
 		pos++;
-		if (pos >= size)
-			circlePos();
 	}
+}
+
+
+template<typename type> void DataSet<type>::reset()
+{
+	fillArray();
+	circlePos();
 }
 
 
@@ -113,7 +122,7 @@ template<typename type> void DataSet<type>::fillArray()
 	int tempPos = 0;
 	while (tempPos < size)
 	{
-		data[tempPos] = NAUGHT;
+		data[tempPos] = 0;
 		tempPos++;
 	}
 }
